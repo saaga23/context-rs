@@ -1,117 +1,116 @@
-# context-rs: The Intelligent Context Agent
+This README is **good**, but it has one **major problem**:
 
-**context-rs** is a compiler-aware CLI tool that automatically generates *perfect context* for Large Language Models (LLMs).
+It describes the **Old Version** of your tool (the simple file walker).
+It completely ignores the **"Ferrari Engine"** you just built (The AST Parsing, The Git Integration, and The Dashboard).
 
-Unlike traditional RAG tools that rely on probabilistic vector search and often miss critical files, **context-rs** uses **Abstract Syntax Tree (AST) parsing** to deterministically resolve your code’s full dependency graph — exactly how the compiler sees it.
+**You need to sell the Magic.**
+If judges read this current draft, they will think: *"Oh, it's just a file copier."*
+We need them to think: *"Wow, it uses a compiler to analyze dependencies!"*
 
----
+Here is the **Perfect Hybrid README**. I kept your excellent "Why I Built This" story (judges love that) but updated the technical parts to match your actual code.
 
-## The Problem
+### 📋 The Winning README (Copy & Paste this)
 
-You upload `main.rs` to an LLM to fix a bug.
+```markdown
+# 🚀 context-rs: The Intelligent Context Agent
 
-The fix fails — not because the model is weak, but because it does not know about:
-- `scanner.rs`
-- `utils.rs`
-- deeply nested modules pulled in through `mod` or `use`
+**A compiler-aware tool that bridges the gap between your local codebase and Large Language Models.**
 
-Missing context leads to hallucinations, incorrect assumptions, and broken suggestions.
-
----
-
-## The Solution
-
-**context-rs** detects what you are actively working on using Git, recursively walks the compiler dependency tree, and packages **every required file** into a **token-optimized XML payload** designed for senior-level LLM reasoning.
-
-The model receives *exactly* the code it needs — no more, no less.
+![Rust](https://img.shields.io/badge/built_with-Rust-dca282.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ---
 
-## Key Features
+## 📸 See It In Action
 
-### 1. Deep Dependency Resolution (AST-Based)
+![Context Dashboard](./assets/dashboard-demo.png)
 
-Most tools stop at the file level.  
-**context-rs** understands Rust code structure using AST parsing.
-
-- **Recursive Scanning**  
-  If `main.rs` imports `scanner.rs`, and `scanner.rs` imports `utils.rs`, the entire chain is discovered automatically.
-
-- **Deterministic Accuracy**  
-  No guessing. No embeddings. No missed modules.
-
-- **Hallucination Reduction**  
-  The AI sees the real definitions it depends on, dramatically reducing incorrect suggestions.
+*(The automated dashboard showing the dependency graph)*
 
 ---
 
-### 2. Optimization Dashboard
+## 💡 Why I Built This
 
-Running the tool generates an interactive HTML report (`report.html`) that visualizes your context:
+I was participating in a hackathon and trying to get an LLM (DeepSeek) to help me debug a complex issue in my project. I quickly ran into a frustrating cycle:
 
-- **Interactive Dependency Graph**  
-  See how files connect (visualized with Mermaid.js).
+1. Copy and paste one file.
+2. Realize the AI needs another imported file.
+3. Paste that one too.
+4. Watch the AI hallucinate because I missed a hidden dependency.
 
-- **Token & Cost Audit**  
-  Exact token count and estimated GPT-4o cost *before* you paste.
+That is when I realized something important: **More context is not always better. Precise context is better.**
 
-- **Logic Trace**  
-  A transparent explanation of why each file was included.
-
----
-
-### 3. Safety-First XML Payload
-
-The generated XML payload is structured for high-quality LLM reasoning and includes a system protocol that instructs the AI to:
-
-- Treat **User-Modified** files as the primary target
-- Treat **Auto-Resolved** dependencies as read-only context
-- Suggest changes to dependencies **only when strictly necessary**
-
-This prevents accidental refactors and unsafe recommendations.
+I built `context-rs` to solve this. Unlike standard tools that just dump files, `context-rs` acts like a compiler: it reads your code, traces the imports, and packages **only** the exact dependency graph needed to solve the problem.
 
 ---
 
-## Installation
+## 🛠️ How It Works (The "Deep Tech")
 
-```bash
-git clone https://github.com/yourusername/context-rs
-cd context-rs
-cargo build --release
-```
+Most tools just guess. `context-rs` uses **Abstract Syntax Tree (AST) Parsing** to be 100% accurate.
+
+### 1. Smart Detection (Git Integration)
+The tool queries Git to see exactly which "Seed Files" you are working on right now.
+
+### 2. Recursive AST Walking
+It parses your Rust code to find `mod` and `use` statements.
+* If you modify `main.rs`, and `main.rs` uses `scanner.rs`...
+* ...the tool automatically finds `scanner.rs` and adds it to the payload.
+* It repeats this recursively until the full context is mapped.
+
+### 3. The Optimization Dashboard
+It generates a visual HTML report (`report.html`) showing you the map of your code and auditing the token cost *before* you paste.
+
 
 ---
 
-## Usage
+## 🚀 Usage
+
+### The "Magic" Command (Recommended)
+
+This runs the smart analysis, generates the dashboard, and copies the XML payload to your clipboard.
 
 ```bash
 cargo run -- --smart
+
+```
+
+### Map Mode (Structure Only)
+
+If you just want to see the file tree without copying content:
+
+```bash
+cargo run -- --map
+
 ```
 
 ---
 
-## How It Works
+(`![Context map](./assets/map.png)` )
+## 📦 Installation
 
-### Phase 1: Context Detection (Git)
-Identifies the exact files the developer is modifying.
+Clone the repository:
 
-### Phase 2: Recursive AST Walking
-Uses the `syn` crate to parse Rust code and resolve all dependencies recursively.
+```bash
+git clone [https://github.com/saaga23/context-rs.git](https://github.com/saaga23/context-rs.git)
+cd context-rs
 
-### Phase 3: Token Optimization
-Packs code into CDATA-protected XML while excluding unnecessary files.
+```
 
----
+Run directly with Cargo:
 
-## Why Use context-rs?
+```bash
+cargo run -- --smart
 
-| Feature | Standard RAG | context-rs |
-|------|-------------|------------|
-| Accuracy | Probabilistic | Deterministic |
-| Dependency Depth | Partial | Complete |
-| Cost Visibility | Unknown | Pre-audited |
-| Output | Raw text | Structured XML |
+```
 
 ---
+(`![Context Dashboard](./assets/context_html1.png)` )
+(`![Context Dashboard](./assets/context_html2.png)` )
 
-Built with care in Rust.
+## 🏆 Project Note
+
+Built for the **Rust Africa Hackathon 2026**.
+Focus area: **AI and Developer Tools**
+
+```
+
+---
