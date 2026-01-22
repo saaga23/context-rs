@@ -1,0 +1,14 @@
+[package]
+name = "context-rs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.100"
+arboard = "3.6.1"
+clap = { version = "4.5.54", features = ["derive"] }
+colored = "3.0.0"
+ignore = "0.4.25"
+syn = { version = "2.0", features = ["full", "visit"] }
+quote = "1.0"
+proc-macro2 = "1.0"
