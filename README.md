@@ -1,6 +1,3 @@
-
-
-```markdown
 # 🚀 context-rs: The Intelligent Context Agent
 
 **A compiler-aware tool that bridges the gap between your local codebase and Large Language Models.**
@@ -63,48 +60,20 @@ This runs the smart analysis, generates the dashboard, and copies the XML payloa
 ```bash
 cargo run -- --smart
 
-```
-
-### Map Mode (Structure Only)
-
+Map Mode (Structure Only)
 If you just want to see the file tree in your terminal without copying content:
 
-```bash
+Bash
 cargo run -- --map
+Output:
 
-```
-
-**Output:**
-
----
-
-## 📦 Installation
-
+📦 Installation
 Clone the repository:
 
-```bash
+Bash
 git clone [https://github.com/saaga23/context-rs.git](https://github.com/saaga23/context-rs.git)
 cd context-rs
-
-```
-
 Run directly with Cargo:
 
-```bash
+Bash
 cargo run -- --smart
-
-```
-
----
-
-## 🏆 Project Note
-
-Built for the **Rust Africa Hackathon 2026**.
-Focus area: **AI and Developer Tools**
-
-```
-
-
-**You are done.** Good luck with the video! 🍌🚀
-
-```
