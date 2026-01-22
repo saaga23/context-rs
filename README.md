@@ -1,15 +1,4 @@
-This README is **good**, but it has one **major problem**:
 
-It describes the **Old Version** of your tool (the simple file walker).
-It completely ignores the **"Ferrari Engine"** you just built (The AST Parsing, The Git Integration, and The Dashboard).
-
-**You need to sell the Magic.**
-If judges read this current draft, they will think: *"Oh, it's just a file copier."*
-We need them to think: *"Wow, it uses a compiler to analyze dependencies!"*
-
-Here is the **Perfect Hybrid README**. I kept your excellent "Why I Built This" story (judges love that) but updated the technical parts to match your actual code.
-
-### 📋 The Winning README (Copy & Paste this)
 
 ```markdown
 # 🚀 context-rs: The Intelligent Context Agent
@@ -22,9 +11,13 @@ Here is the **Perfect Hybrid README**. I kept your excellent "Why I Built This" 
 
 ## 📸 See It In Action
 
-![Context Dashboard](./assets/dashboard-demo.png)
+### 1. The Dependency Graph (Auto-Generated)
+The tool parses your AST to visualize exactly how your files connect.
+![Dependency Graph](./assets/context_html1.png)
 
-*(The automated dashboard showing the dependency graph)*
+### 2. The Optimized Payload (Clipboard Ready)
+It generates a token-optimized XML packet with system instructions, ready to paste into ChatGPT/Claude.
+![XML Payload](./assets/context_html2.png)
 
 ---
 
@@ -57,8 +50,7 @@ It parses your Rust code to find `mod` and `use` statements.
 * It repeats this recursively until the full context is mapped.
 
 ### 3. The Optimization Dashboard
-It generates a visual HTML report (`report.html`) showing you the map of your code and auditing the token cost *before* you paste.
-
+It generates a visual HTML report showing you the map of your code and auditing the token cost *before* you paste.
 
 ---
 
@@ -75,16 +67,17 @@ cargo run -- --smart
 
 ### Map Mode (Structure Only)
 
-If you just want to see the file tree without copying content:
+If you just want to see the file tree in your terminal without copying content:
 
 ```bash
 cargo run -- --map
 
 ```
 
+**Output:**
+
 ---
 
-![Context map](./assets/map.png)
 ## 📦 Installation
 
 Clone the repository:
@@ -103,8 +96,6 @@ cargo run -- --smart
 ```
 
 ---
-![Context Dashboard](./assets/context_html1.png)
-![Context Dashboard](./assets/context_html2.png)
 
 ## 🏆 Project Note
 
@@ -113,4 +104,7 @@ Focus area: **AI and Developer Tools**
 
 ```
 
----
+
+**You are done.** Good luck with the video! 🍌🚀
+
+```
