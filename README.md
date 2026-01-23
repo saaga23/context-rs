@@ -14,7 +14,8 @@ The tool parses your AST to visualize exactly how your files connect.
 
 ### 2. The Optimized Payload (Clipboard Ready)
 It generates a token-optimized XML packet with system instructions, ready to paste into ChatGPT/Claude.
-![XML Payload](./assets/context_html2.png)
+![Dependency Graph](./assets/context_html1.png)
+
 
 ---
 
