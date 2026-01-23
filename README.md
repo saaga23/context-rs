@@ -75,9 +75,7 @@ cd context-rs
 Run directly with Cargo:
 
 Bash
+cargo build --release
 cargo run -- --smart
 🏆 Project Note
 Built for the Rust Africa Hackathon 2026. Focus area: AI and Developer Tools
-
-
-**Check it one last time on GitHub.** If you see the Graph at the top, the XML at the bottom, and the Map in the middle... **YOU HAVE WON.** 🏆
