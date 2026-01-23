@@ -80,6 +80,8 @@ cargo run -- --map
 
 ---
 
+![MAP OUTPU](./assets/map.png)
+
 ## 📦 Installation
 
 Clone the repository:
