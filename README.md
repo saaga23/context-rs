@@ -80,7 +80,7 @@ cargo run -- --map
 
 ---
 
-![MAP OUTPU](./assets/map.png)
+![MAP OUTPUT](./assets/map.png)
 
 ## 📦 Installation
 
