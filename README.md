@@ -1,109 +1,73 @@
-# 🚀 context-rs: The Intelligent Context Agent
+# context-rs
 
-**A compiler-aware tool that bridges the gap between your local codebase and Large Language Models.**
+A Rust CLI that traces a codebase's module dependency graph and builds a token-optimized XML context payload for LLM prompts.
 
-![Rust](https://img.shields.io/badge/built_with-Rust-dca282.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+## What it does
 
----
+`context-rs` collects focused context for large language models when working on a Rust project. Instead of manually copying files and guessing which modules matter, the tool parses the source, follows `mod` and `use` statements recursively, and packages only the files needed to understand the selected entry point.
 
-## 📸 See It In Action
+## How it works
 
-### 1. The Dependency Graph (Auto-Generated)
-The tool parses your AST to visualize exactly how your files connect.
+1. **Seed detection** â€” Uses Git status to identify the files you are currently working on.
+2. **Recursive AST walking** â€” Parses Rust source to find module and import declarations, then follows them recursively until the full dependency graph is mapped.
+3. **HTML dashboard** â€” Generates a local report showing the code structure, dependency graph, and estimated token cost before you paste anything into an LLM.
+4. **Clipboard payload** â€” Builds an XML packet with system instructions and copies it to the clipboard.
 
-![Dependency Graph](./assets/context_html1.png)
+## Tech stack
 
-### 2. The Optimized Payload (Clipboard Ready)
-It generates a token-optimized XML packet with system instructions, ready to paste into ChatGPT or Claude.
+- Rust, Cargo
+- Abstract syntax tree (AST) parsing for Rust modules and imports
+- HTML report generation
+- Git integration for seed-file detection
 
-![XML Payload](./assets/context_html2.png)
+## Results / Metrics
 
----
+No performance benchmarks yet.
 
-## 💡 Why I Built This
+## How to run
 
-I was participating in a hackathon and trying to get an LLM (DeepSeek) to help me debug a complex issue in my project. I quickly ran into a frustrating cycle:
-
-1. Copy and paste one file.
-2. Realize the AI needs another imported file.
-3. Paste that one too.
-4. Watch the AI hallucinate because I missed a hidden dependency.
-
-That is when I realized something important:
-
-**More context is not always better. Precise context is better.**
-
-I built `context-rs` to solve this problem. Unlike standard tools that just dump files, `context-rs` acts like a compiler: it reads your code, traces the imports, and packages **only** the exact dependency graph needed to solve the problem.
-
----
-
-## 🛠️ How It Works (The "Deep Tech")
-
-Most tools just guess. `context-rs` uses **Abstract Syntax Tree (AST) parsing** to be accurate.
-
-### 1. Smart Detection (Git Integration)
-The tool queries Git to detect exactly which **Seed Files** you are currently working on.
-
-### 2. Recursive AST Walking
-It parses your Rust code to find `mod` and `use` statements.
-
-- If you modify `main.rs`, and `main.rs` uses `scanner.rs`
-- The tool automatically finds `scanner.rs` and adds it to the payload
-- This process repeats recursively until the full dependency graph is mapped
-
-### 3. The Optimization Dashboard
-It generates a visual HTML report that shows:
-- The structure of your code
-- The full dependency graph
-- The estimated token cost **before** you paste into an LLM
-
----
-
-## 🚀 Usage
-
-### The "Magic" Command (Recommended)
-
-Runs smart analysis, generates the HTML dashboard, and copies the optimized XML payload to your clipboard.
-
-```bash
-cargo run -- --smart
-```
-
-### Map Mode (Structure Only)
-
-If you only want to view the file structure in your terminal without copying file contents:
-
-```bash
-cargo run -- --map
-```
-
----
-
-![MAP OUTPUT](./assets/map.png)
-
-## 📦 Installation
-
-Clone the repository:
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/saaga23/context-rs.git
 cd context-rs
 ```
 
-Build and run with Cargo:
+2. Build and run:
 
 ```bash
 cargo build --release
+```
+
+3. Generate the dependency graph and copy the XML payload:
+
+```bash
 cargo run -- --smart
 ```
 
+Or view only the structure map:
+
+```bash
+cargo run -- --map
+```
+
+## Project note
+
+Built for the Rust Africa Hackathon 2026 in the AI and Developer Tools category.
+
+## License
+
+MIT License (stated in the README badge; no `LICENSE` file is currently present in the repository).
+
 ---
 
-## 🏆 Project Note
+## Suggested GitHub metadata
 
-Built for the **Rust Africa Hackathon 2026**.  
-Focus area: **AI and Developer Tools**.
+**Suggested descriptions (<=160 chars):**
 
-#RustAfricaHackathon
-![Hackathon](https://img.shields.io/badge/Event-RustAfricaHackathon-orange)
+1. Rust CLI that traces module dependencies and builds XML context payloads for LLMs.
+2. Compiler-aware context packager for Rust codebases, built for LLM-assisted development.
+
+**Suggested topic tags:**
+
+`rust`, `developer-tools`, `llm-context`, `ast-parsing`, `codebase-analysis`
