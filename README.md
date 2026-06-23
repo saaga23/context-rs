@@ -8,10 +8,10 @@ A Rust CLI that traces a codebase's module dependency graph and builds a token-o
 
 ## How it works
 
-1. **Seed detection** â€” Uses Git status to identify the files you are currently working on.
-2. **Recursive AST walking** â€” Parses Rust source to find module and import declarations, then follows them recursively until the full dependency graph is mapped.
-3. **HTML dashboard** â€” Generates a local report showing the code structure, dependency graph, and estimated token cost before you paste anything into an LLM.
-4. **Clipboard payload** â€” Builds an XML packet with system instructions and copies it to the clipboard.
+1. **Seed detection** - Uses Git status to identify the files you are currently working on.
+2. **Recursive AST walking** - Parses Rust source to find module and import declarations, then follows them recursively until the full dependency graph is mapped.
+3. **HTML dashboard** - Generates a local report showing the code structure, dependency graph, and estimated token cost before you paste anything into an LLM.
+4. **Clipboard payload** - Builds an XML packet with system instructions and copies it to the clipboard.
 
 ## Tech stack
 
